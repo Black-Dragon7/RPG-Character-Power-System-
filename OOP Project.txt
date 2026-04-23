@@ -1,0 +1,76 @@
+// ABSTRACTION 
+abstract class Hero {
+
+    private String name;      // ENCAPSULATION
+    private int health;       
+
+    public Hero(String name, int health) {
+        this.name = name;
+        this.health = health;
+    }
+
+    public String getName() { return name; }    // ENCAPSULATION - getter
+    public int getHealth()  { return health; }  
+
+    public abstract void useSpecialPower();     // ABSTRACTION - child 
+
+    public void showStatus() {                  
+        System.out.println(name + " | HP: " + health);
+    }
+}
+
+// INHERITANCE - Wizard
+class Wizard extends Hero {
+
+    public Wizard(String name) {
+        super(name, 80);
+    }
+
+    @Override
+    public void useSpecialPower() {             // POLYMORPHISM
+        System.out.println(getName() + " casts a FIREBALL! ");
+    }
+
+    @Override
+    public void showStatus() {
+        System.out.print("[Wizard] ");
+        super.showStatus();
+    }
+}
+
+// INHERITANCE - Ninja
+class Ninja extends Hero {
+
+    public Ninja(String name) {
+        super(name, 100);
+    }
+
+    @Override
+    public void useSpecialPower() {             // POLYMORPHISM
+        System.out.println(getName() + " vanishes into SHADOW! ");
+    }
+
+    @Override
+    public void showStatus() {
+        System.out.print("[Ninja] ");
+        super.showStatus();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        
+  System.out.println("=== RPG Character Power System ===");
+  
+        Hero h1 = new Wizard("Tuswer");
+        Hero h2 = new Ninja("Imran");
+
+        h1.showStatus();
+        h1.useSpecialPower();
+
+        System.out.println("---");
+
+        h2.showStatus();
+        h2.useSpecialPower();
+    }
+}
